@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c5138" />
+  <meta name="description" content="ইখলাস — ইসলামিক লাইব্রেরি, ডিজিটাল তসবিহ ও সাপ্তাহিক দরুদ প্রতিযোগিতা।" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <title>ইখলাস — ইসলামিক অ্যাপ</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="ইখলাস হোম"><span class="brand-mark">إ</span><span><b>ইখলাস</b><small>IKHLAS · ইসলামিক অ্যাপ</small></span></a>
+      <button id="menuBtn" class="menu-btn" aria-label="মেনু">☰</button>
+      <nav id="nav">
+        <button class="nav-link active" data-view="home">হোম</button>
+        <button class="nav-link" data-view="library">লাইব্রেরি</button>
+        <button class="nav-link" data-view="tasbih">তসবিহ</button>
+        <button class="nav-link" data-view="competition">দরুদ প্রতিযোগিতা</button>
+      </nav>
+      <div class="header-actions"><button id="themeBtn" class="outline-btn" type="button" aria-label="থিম পরিবর্তন">☾ ডার্ক</button><button id="authBtn" class="outline-btn">লগইন</button></div>
+    </header>
+    <main>
+      <section id="home" class="view active">
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+            <h1>জিকিরে প্রশান্তি,<br/><em>জ্ঞানেই আলোকিত জীবন।</em></h1>
+            <p>ইসলামিক বই পড়ুন, নিয়মিত তসবিহ আদায় করুন এবং জুমার দিনে বেশি বেশি দরুদ পাঠে অংশ নিন।</p>
+            <div class="hero-actions">
+              <button class="primary-btn" data-go="tasbih">তসবিহ শুরু করুন <span>→</span></button>
+              <button class="light-btn" data-go="library">বই পড়ুন</button>
+            </div>
+          </div>
+          <div class="hero-art"><div class="moon"></div><div class="arch"><div class="arch-inner">﷽<span>إخلاص</span></div></div><div class="stars">✦　·　✧　·　✦</div></div>
+        </div>
+        <div class="quote-card">
+          <div class="quote-symbol">“</div>
+          <div><p>নিশ্চয়ই আল্লাহ ও তাঁর ফেরেশতাগণ নবীর প্রতি দরুদ পাঠ করেন। হে মুমিনগণ! তোমরাও তাঁর প্রতি দরুদ ও সালাম পাঠ করো।</p><small>সূরা আল-আহযাব · ৩৩:৫৬</small></div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">আপনার প্রতিদিনের আমল</span><h2>এক নজরে ইখলাস</h2></div></div>
+        <div class="feature-grid">
+          <button class="feature-card" data-go="library"><span class="feature-icon">▤</span><b>ইসলামিক লাইব্রেরি</b><small>বই, উপন্যাস ও হাদিসগ্রন্থ</small><span class="card-arrow">→</span></button>
+          <button class="feature-card" data-go="tasbih"><span class="feature-icon">۞</span><b>ডিজিটাল তসবিহ</b><small>সহজে দৈনিক জিকির গণনা</small><span class="card-arrow">→</span></button>
+          <button class="feature-card" data-go="competition"><span class="feature-icon">☾</span><b>জুমার দরুদ</b><small>সাপ্তাহিক আমল ও লিডারবোর্ড</small><span class="card-arrow">→</span></button>
+        </div>
+      </section>
+
+      <section id="library" class="view">
+        <div class="page-heading"><span class="eyebrow">জ্ঞান অন্বেষণ</span><h1>ইসলামিক লাইব্রেরি</h1><p>ইসলামিক বই, উপন্যাস ও হাদিসগ্রন্থ এক জায়গায়।</p></div>
+        <div class="library-tools"><input id="bookSearch" type="search" placeholder="বইয়ের নাম খুঁজুন..." /><select id="bookCategory"><option value="all">সব ক্যাটাগরি</option><option value="novel">ইসলামিক উপন্যাস</option><option value="book">ইসলামিক বই</option><option value="hadith">হাদিসগ্রন্থ</option></select></div>
+        <div id="libraryGrid" class="library-grid"><div class="empty-state">লাইব্রেরি লোড হচ্ছে...</div></div>
+        <div id="adminUpload" class="admin-panel hidden">
+          <h3>＋ নতুন বই আপলোড (অ্যাডমিন)</h3>
+          <form id="uploadForm" class="upload-form">
+            <input name="title" placeholder="বইয়ের নাম" required />
+            <input name="author" placeholder="লেখক / সংকলক" />
+            <select name="category"><option value="novel">ইসলামিক উপন্যাস</option><option value="book">ইসলামিক বই</option><option value="hadith">হাদিসগ্রন্থ</option></select>
+            <input name="file" type="file" accept="application/pdf" required />
+            <button class="primary-btn" type="submit">PDF আপলোড করুন</button>
+          </form>
+          <small>শুধু অ্যাডমিন অ্যাকাউন্ট থেকে বই আপলোড ও প্রতিযোগিতার হিসাব পরিষ্কার করা যাবে। অ্যাডমিন লগইন: Netlify Environment Variables-এ নির্ধারিত username/password ব্যবহার করুন।</small>
+          <div class="data-clean-panel">
+            <h3>প্রতিযোগিতার ডেটা ব্যবস্থাপনা</h3>
+            <p>এই বাটনে চাপলে সবার দরুদ প্রতিযোগিতার সব গণনা মুছে যাবে। সদস্য, অ্যাকাউন্ট, প্রদর্শিত নাম ও বই মুছবে না।</p>
+            <button id="cleanDurudBtn" class="danger-btn" type="button">সব প্রতিযোগিতার গণনা পরিষ্কার করুন</button>
+            <small id="cleanDurudStatus" role="status"></small>
+          </div>
+        </div>
+      </section>
+
+      <section id="adminView" class="view admin-dashboard-view">
+        <div class="admin-dashboard-head"><div><span class="eyebrow">SECURE CONTROL PANEL</span><h1>ইখলাস Admin Dashboard</h1><p>বই, সদস্য ও প্রতিযোগিতার ব্যবস্থাপনা</p></div><button class="outline-btn" id="adminHomeBtn" type="button">← মূল ওয়েবসাইট</button></div>
+        <div id="adminGate" class="admin-panel"><h3>অ্যাডমিন লগইন প্রয়োজন</h3><p>এই প্যানেল শুধু অনুমোদিত অ্যাডমিন ব্যবহার করতে পারবেন।</p><button class="primary-btn" id="adminLoginBtn" type="button">অ্যাডমিন লগইন</button><small id="adminGateMessage"></small></div>
+        <div id="adminContent" class="hidden">
+          <div class="admin-stat-grid" id="adminStats"><div class="admin-stat"><small>লোড হচ্ছে</small><strong>—</strong></div></div>
+          <div class="admin-panel"><div class="admin-section-title"><div><h2>বই ও PDF পরিচালনা</h2><p>সর্বোচ্চ ১২ MB PDF, chunk upload-এর মাধ্যমে পাঠানো হবে।</p></div><button class="outline-btn" id="adminRefreshBtn" type="button">রিফ্রেশ</button></div>
+            <form id="adminUploadForm" class="admin-upload-form"><input name="title" placeholder="বইয়ের নাম" required/><input name="author" placeholder="লেখক / সংকলক"/><select name="category"><option value="novel">ইসলামিক উপন্যাস</option><option value="book" selected>ইসলামিক বই</option><option value="hadith">হাদিসগ্রন্থ</option></select><input name="file" type="file" accept="application/pdf,.pdf" required/><button class="primary-btn" type="submit">PDF আপলোড</button></form><div id="adminUploadStatus" class="admin-status" role="status"></div>
+            <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>বইয়ের নাম</th><th>লেখক</th><th>ক্যাটাগরি</th><th>অ্যাকশন</th></tr></thead><tbody id="adminBooksRows"><tr><td colspan="4">লোড হচ্ছে...</td></tr></tbody></table></div>
+          </div>
+          <div class="admin-panel"><div class="admin-section-title"><div><h2>সদস্য তালিকা</h2><p>সদস্যদের অ্যাকাউন্ট অক্ষত থাকবে; এখানে শুধু তালিকা দেখা যাবে।</p></div></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>প্রদর্শিত নাম</th><th>Username</th><th>ধরন</th></tr></thead><tbody id="adminMembersRows"><tr><td colspan="3">লোড হচ্ছে...</td></tr></tbody></table></div></div>
+          <div class="admin-panel"><h2>প্রতিযোগিতার ব্যবস্থাপনা</h2><p>শুধু দরুদ প্রতিযোগিতার রেকর্ড মুছবে। সদস্য অ্যাকাউন্ট ও বই মুছবে না।</p><button id="adminClearDurudBtn" class="danger-btn" type="button">প্রতিযোগিতার সব গণনা Reset</button><small id="adminClearDurudStatus" class="admin-status"></small></div>
+        </div>
+      </section>
+
+      <section id="tasbih" class="view">
+        <div class="page-heading centered"><span class="eyebrow">দৈনিক জিকির</span><h1>ডিজিটাল তসবিহ</h1><p>মনোযোগ ও একাগ্রতার সঙ্গে জিকির আদায় করুন।</p></div>
+        <div class="tasbih-layout">
+          <div class="tasbih-card">
+            <div class="tasbih-top"><span>আজকের তসবিহ</span><span id="tasbihProgress">০ / ১০০</span></div>
+            <div class="dhikr-name" id="dhikrName">سُبْحَانَ اللَّهِ</div>
+            <div class="dhikr-bn" id="dhikrBn">সুবহানাল্লাহ</div>
+            <div class="counter-ring" id="counterRing"><div><strong id="counter">০</strong><small>বার</small></div></div>
+            <div class="target-text">লক্ষ্য: <b id="target">৩৩</b> বার</div>
+            <button id="countBtn" class="count-btn">জিকির গণনা করুন</button>
+            <div class="tasbih-controls"><button id="resetDhikr" class="outline-btn">↺ রিসেট</button><button id="nextDhikr" class="outline-btn">পরবর্তী জিকির →</button></div>
+          </div>
+          <div class="dhikr-list">
+            <h3>আজকের আমল</h3>
+            <div id="dhikrChecklist"></div>
+            <div class="soft-note">আপনার তসবিহের অগ্রগতি এই ডিভাইসে সংরক্ষিত থাকবে।</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="competition" class="view">
+        <div class="page-heading"><span class="eyebrow">জুমার বিশেষ আমল</span><h1>দরুদ প্রতিযোগিতা</h1><p>দরুদে ইবরাহিম পাঠ করুন এবং নিজের পাঠের সংখ্যা যুক্ত করুন।</p></div>
+        <div class="competition-intro">
+          <div><span class="eyebrow">শুক্রবারের আমল</span><h2>اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ</h2><p>দরুদে ইবরাহিমের পূর্ণ পাঠ:</p>
+            <div class="durood-full" dir="rtl">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ ۞ اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</div>
+            <p>জুমার দিনে নবী ﷺ-এর ওপর বেশি বেশি দরুদ পাঠ করুন।</p><small>সুনান আবু দাউদ, ১০৪৭ — জুমার দিনে বেশি দরুদ পাঠের নির্দেশনা।</small></div>
+          <div class="jumuah-icon">☪</div>
+        </div>
+        <div class="competition-grid">
+          <div class="my-count-card"><span class="eyebrow">আমলের নাম</span><label for="competitionDhikr">প্রতিযোগিতার তসবিহ নির্বাচন</label><select id="competitionDhikr" class="outline-btn" aria-label="তসবিহ নির্বাচন"><option value="ibrahim">দরুদে ইবরাহিম</option></select><span class="eyebrow">আপনার দরুদ সংখ্যা</span><strong id="myDurud">০</strong><small>চলতি শুক্রবারের প্রতিযোগিতা</small><div class="durud-actions"><button id="durudMinus" class="outline-btn">−</button><button id="durudPlus" class="primary-btn">+ ১ দরুদ</button></div><small id="durudLoginHint">গণনা সিঙ্ক করতে লগইন করুন।</small><form id="profileForm" class="profile-form"><input name="displayName" maxlength="40" placeholder="প্রতিযোগিতায় প্রদর্শিত নাম" aria-label="প্রদর্শিত নাম"/><button class="outline-btn" type="submit">নাম সংরক্ষণ</button><small id="profileMessage"></small></form></div>
+          <div class="leaderboard-card"><div class="leaderboard-head"><div><span class="eyebrow">সাপ্তাহিক প্রতিযোগিতা</span><h3>সবার দরুদ পাঠের হিসাব</h3></div><span class="live-dot">● লাইভ</span></div><div id="competitionSummary" class="competition-summary"><div><small>সবার মোট দরুদ</small><strong>০</strong></div><div><small>অংশগ্রহণকারী</small><strong>০</strong></div></div><p class="mashallah-note">ما شاء الله — মাশাআল্লাহ! আল্লাহ সবার আমল কবুল করুন।</p><div id="leaderboard"><div class="empty-state">লিডারবোর্ড লোড হচ্ছে...</div></div></div>
+        </div>
+        <p class="disclaimer">এটি ব্যক্তিগত আমল উৎসাহিত করার একটি আয়োজন; কাউকে কম বা বেশি আমলের জন্য ছোট করা উদ্দেশ্য নয়। নিজের আমল গোপন রাখাও বেছে নিতে পারেন।</p>
+      </section>
+    </main>
+    <footer><div class="footer-brand">إخلاص <span>ইখলাস</span></div><p>আল্লাহর সন্তুষ্টির উদ্দেশ্যে জ্ঞান ও আমলের পথে।</p><small>Developed by Almas &amp; Asrar</small></footer>
+  </div>
+
+  <dialog id="authDialog" class="modal">
+    <form method="dialog" class="modal-close"><button aria-label="বন্ধ করুন">×</button></form>
+    <span class="eyebrow">ইখলাস অ্যাকাউন্ট</span><h2>লগইন / রেজিস্ট্রেশন</h2>
+    <p>দরুদ প্রতিযোগিতায় অংশ নিতে ইউজারনেম ও পাসওয়ার্ড দিয়ে প্রবেশ করুন।</p>
+    <form id="authForm"><div class="auth-switch"><button type="button" id="loginMode" class="active">লগইন</button><button type="button" id="registerMode">নতুন অ্যাকাউন্ট</button></div><input name="username" type="text" placeholder="ইউজারনেম" minlength="3" maxlength="24" required/><input name="displayName" id="displayNameInput" type="text" hidden placeholder="আপনার নাম (লিডারবোর্ডে দেখাবে)" maxlength="40"/><input name="password" type="password" placeholder="পাসওয়ার্ড (কমপক্ষে ৮ অক্ষর)" minlength="8" required/><button class="primary-btn" type="submit">লগইন</button></form>
+    <small id="authMessage"></small><p class="admin-login-help">অ্যাডমিন প্রবেশ: Netlify-তে সেট করা <b>IKHLAS_ADMIN_USERNAME</b> ও <b>IKHLAS_ADMIN_PASSWORD</b> দিয়ে লগইন করুন। অ্যাডমিনের জন্য আলাদা রেজিস্ট্রেশন প্রয়োজন নেই।</p>
+  </dialog>
+  <dialog id="readerDialog" class="reader-modal"><div class="reader-head"><b id="readerTitle">বই পড়ুন</b><button id="closeReader">✕</button></div><iframe id="pdfFrame" title="PDF reader"></iframe></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
